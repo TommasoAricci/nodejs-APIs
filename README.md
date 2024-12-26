@@ -44,7 +44,6 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
 ## API Capabilities
 
 ### User Management
-
 - **User Creation (name, surname, email)**
   - **POST** `/user/register`
 - **User Modification (by ID)**
@@ -59,6 +58,7 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
     "surname": "Doe",
     "email": "john.doe@example.com"
   }
+
 ### Product Management
 - **Product Creation (name)**
   - **POST** `/product/register`
@@ -100,4 +100,6 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+
 
