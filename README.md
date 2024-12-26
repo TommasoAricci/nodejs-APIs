@@ -21,85 +21,89 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
 
 ### Directory Structure
 
-- **`/src`**:
-    - Contains all the core files needed to build the server and implement the application logic.
+- **`/src`**: Contains all the core files needed to build the server and implement the application logic.
+- **`/src/controller`**: Holds the controllers responsible for managing user, order, and product creation, modification, and deletion.
+- **`/src/models`**: Contains the Mongoose schema models used to define the collections.
+- **`/src/routes`**: Defines all the endpoint routes, linking each controller (user, product, order) to its corresponding route.
+- **`/src/app.js`**: Sets up the main application configuration.
+- **`/src/database.js`**: Establishes the connection to the database.
+- **`/src/server.js`**: Configures and starts the server.
 
-- **`/src/controller`**: 
-  - Holds the controllers responsible for managing user, order, and product creation, modification, and deletion.
-
-- **`/src/models`**: 
-  - Contains the Mongoose schema models used to define the collections.
-
-- **`/src/routes`**: 
-  - Defines all the endpoint routes, linking each controller (user, product, order) to its corresponding route.
-
-- **`/src/app.js`**: 
-  - Sets up the main application configuration.
-
-- **`/src/database.js`**: 
-  - Establishes the connection to the database.
-
-- **`/src/server.js`**: 
-  - Configures and starts the server.
 ## API Capabilities
 
 ### User Management
-- **User Creation (name, surname, email)**
+
+- **User Creation (name, surname, email)**  
   - **POST** `/user/register`
-- **User Modification (by ID)**
+  
+- **User Modification (by ID)**  
   - **PUT** `/user/modify/:id`
-- **User Deletion (by ID)**
+  
+- **User Deletion (by ID)**  
   - **DELETE** `/user/delete/:id`
 
-    **Request Body Example:**
-  ```json
-  {
-    "name": "John",
-    "surname": "Doe",
-    "email": "john.doe@example.com"
-  }
+**Request Body Example:**
+```json
+{
+  "name": "John",
+  "surname": "Doe",
+  "email": "john.doe@example.com"
+}
+```
 
 ### Product Management
-- **Product Creation (name)**
+
+- **Product Creation (name)**  
   - **POST** `/product/register`
-- **Product Modification (by ID)**
-  - **PUT** `/product/modify/:id`
-- **Product Deletion (by ID)**
-  - **DELETE** `/product/delete/:id`
   
-    **Request Body Example:**
-  ```json
-  {
-    "name": "Macbook"
-  }
+- **Product Modification (by ID)**  
+  - **PUT** `/product/modify/:id`
+  
+- **Product Deletion (by ID)**  
+  - **DELETE** `/product/delete/:id`
+
+**Request Body Example:**
+```json
+{
+  "name": "Macbook"
+}
+```
 
 ### Order Management
-- **Order Creation (userId, productId)**
+
+- **Order Creation (userId, productId)**  
   - **POST** `/order/register`
-- **Order Modification (by ID)**
+  
+- **Order Modification (by ID)**  
   - **PUT** `/order/modify/:id`
-- **Order Deletion (by ID)**
+  
+- **Order Deletion (by ID)**  
   - **DELETE** `/order/delete/:id`
 
-- **Getting all orders**
+- **Get All Orders**  
   - **GET** `/order/all`
-- **Filtering by recent date**
+  
+- **Filter Orders by Recent Date**  
   - **GET** `/order/recent`
-- **Filtering by older date**
+  
+- **Filter Orders by Older Date**  
   - **GET** `/order/old`
-- **Filtering by prodyct name**
+  
+- **Filter Orders by Product Name**  
   - **GET** `/order/byproduct`
 
-- **Request Body Example:**
+**Request Body Example:**
+```json
+{
+  "users": ["676c31f5d6fe35e30b8efaeb"],
+  "products": ["676c327ad6fe35e30b8efaf6"]
+}
+```
 
-  ```json
-  {
-	"users" : ["676c31f5d6fe35e30b8efaeb"],
-	"products": ["676c327ad6fe35e30b8efaf6"]
-  }
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
 
 
 
