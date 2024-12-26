@@ -90,7 +90,7 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
   - **GET** `/order/old`
   
 - **Filter Orders by Product Name**  
-  - **GET** `/order/byproduct`
+  - **GET** `/order/byproduct/name`
 
 **Request Body Example:**
 ```json
