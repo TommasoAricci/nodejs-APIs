@@ -7,7 +7,7 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
 
 ## Tech Stack
 
-**Backend Language:**
+**Backend Platform:**
 - NodeJs
 
 **Libraries:** 
