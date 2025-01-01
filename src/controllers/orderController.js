@@ -46,74 +46,48 @@ const deleteOrder = async (req, res) => {
   }
 };
 
-// get all orders
+// filter
 
-const getAllOrders = async (req, res) => {
+const getOrders = async (req, res) => {
   try {
-    const orders = await Order.find().populate("users").populate("products");
-    res.status(200).json(orders);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-    console.log(error);
-  }
-};
+    const page = parseInt(req.query.page) || 0;
+    const ordersPerPage = parseInt(req.query.limit) || 2;
+    const { productId, date } = req.query;
+    const filter = {};
 
-// order by newer date
-
-const getOrderByRecentDate = async (req, res) => {
-  try {
-    const orders = await Order.find()
-      .populate("users")
-      .populate("products")
-      .sort({ date: -1 });
-    res.status(200).json(orders);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-    console.log(error);
-  }
-};
-
-// order by older date
-
-const getOrderByOldDate = async (req, res) => {
-  try {
-    const orders = await Order.find()
-      .populate("users")
-      .populate("products")
-      .sort({ date: +1 });
-    res.status(200).json(orders);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-    console.log(error);
-  }
-};
-
-// order by product
-
-const getOrderByProduct = async (req, res) => {
-  try {
-    const product = await Product.findOne({ name: req.params.name });
-
-    if (product) {
-      const orders = await Order.find({ products: product._id })
-        .populate("users")
-        .populate("products");
-      res.status(200).json(orders);
-    } else {
-      res.status(400).json({ error: "Product not found" });
+    // Aggiungi filtri se presenti
+    if (productId) {
+      filter.products = productId;
     }
+
+    if (date) {
+      const startDate = new Date(date);
+      startDate.setHours(0, 0, 0, 0); // Imposta l'orario a mezzanotte
+
+      const endDate = new Date(startDate);
+      endDate.setHours(23, 59, 59, 999); // Imposta l'orario alla fine della giornata
+
+      filter.date = { $gte: startDate, $lt: endDate };
+    }
+
+    // Trova gli ordini con filtro e paginazione
+    const orders = await Order.find(filter)
+      .skip(page * ordersPerPage)
+      .limit(ordersPerPage)
+      .populate("users")
+      .populate("products");
+
+    res.status(200).json(orders);
+
   } catch (error) {
     res.status(400).json({ error: error.message });
     console.log(error);
   }
-  
 };
+
 module.exports = {
   createOrder,
   modifyOrder,
   deleteOrder,
-  getAllOrders,
-  getOrderByRecentDate,
-  getOrderByOldDate,
-  getOrderByProduct,
+  getOrders,
 };

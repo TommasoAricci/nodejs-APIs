@@ -103,5 +103,3 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
