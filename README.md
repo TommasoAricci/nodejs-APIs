@@ -92,10 +92,10 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
   - **GET** `/order`: Retrieves all orders, paginated. The default page is 0, and the default limit for documents is 2.
 
 - **Get Order by id**  
-  - **GET** `/order?productId={id}`
+  - **GET** `/order?productId="676c327ad6fe35e30b8efaf6"`
 
 - **Get Orders by date**  
-  - **GET** `/order?date={date}`
+  - **GET** `/order?date="2024-12-25"`
 
 ## License
 
