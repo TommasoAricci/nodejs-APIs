@@ -80,18 +80,6 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
 - **Order Deletion (by ID)**  
   - **DELETE** `/order/delete/:id`
 
-- **Get All Orders**  
-  - **GET** `/order/all`
-  
-- **Filter Orders by Recent Date**  
-  - **GET** `/order/recent`
-  
-- **Filter Orders by Older Date**  
-  - **GET** `/order/old`
-  
-- **Filter Orders by Product Name**  
-  - **GET** `/order/byproduct/name`
-
 **Request Body Example:**
 ```json
 {
@@ -99,6 +87,15 @@ Orizon Travel is a sustainable travel agency focused on providing and promoting 
   "products": ["676c327ad6fe35e30b8efaf6"]
 }
 ```
+
+- **Getting Orders**  
+  - **GET** `/order`: Retrieves all orders, paginated. The default page is 0, and the default limit for documents is 2.
+
+- **Get Order by id**  
+  - **GET** `/order?productId={id}`
+
+- **Get Orders by date**  
+  - **GET** `/order?date={date}`
 
 ## License
 
