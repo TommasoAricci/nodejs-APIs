@@ -55,22 +55,26 @@ const getOrders = async (req, res) => {
     const { productId, date } = req.query;
     const filter = {};
 
-    // Aggiungi filtri se presenti
+    // productId
+
     if (productId) {
       filter.products = productId;
     }
 
+    // date
+
     if (date) {
       const startDate = new Date(date);
-      startDate.setHours(0, 0, 0, 0); // Imposta l'orario a mezzanotte
+      startDate.setHours(0, 0, 0, 0);
 
       const endDate = new Date(startDate);
-      endDate.setHours(23, 59, 59, 999); // Imposta l'orario alla fine della giornata
+      endDate.setHours(23, 59, 59, 999);
 
       filter.date = { $gte: startDate, $lt: endDate };
     }
 
-    // Trova gli ordini con filtro e paginazione
+    // get orders
+
     const orders = await Order.find(filter)
       .skip(page * ordersPerPage)
       .limit(ordersPerPage)
